@@ -1,10 +1,12 @@
 package LinkedList;
 
 public class LinkedList {
-    public Node head;
+    private Node head;
+    private int size;
 
     public LinkedList(){
         this.head = null;
+        this.size = 0;
     }
 
     public void addToHead(String data){
@@ -16,6 +18,7 @@ public class LinkedList {
         if(currentHead != null){
             this.head.setNextNode(currentHead);
         }
+        this.size ++;
     }
 
     public void addToTail(String data){
@@ -27,6 +30,7 @@ public class LinkedList {
             tail = tail.getNextNode();
         }
         tail.setNextNode(new Node(data));
+        this.size ++;
         }
     }
 
@@ -37,12 +41,45 @@ public class LinkedList {
         }
     
         this.head = removedHead.getNextNode();
+        this.size --;
         return removedHead.data;
     }
 
-    public String getData(int index){
-        return null;
+    public String removeTail(){
+        
     }
+
+    public int size(){
+        return this.size;
+    }
+
+    public String getData(int index){
+        if(index < 0 || index >= size()){
+            return "invalid index!";
+        }
+        Node currentNode = this.head;
+        //traverse to the node at specific index
+        for(int i = 0 ; i < index; i++ ){
+            currentNode = currentNode.getNextNode();
+        }
+        return currentNode.data;
+    }
+
+    public boolean contains(String data){
+        if (data == null){
+            return false; 
+        }
+        Node currentNode = this.head;
+        for(int i = 0 ; i < size(); i++){
+            if(data.equals(currentNode.data) || (data != null && data.equals(currentNode.data))){
+                return true;
+            }
+            currentNode = currentNode.getNextNode();
+        }
+        return false;
+    }
+
+
 
     public String printList(){
         String output = "<head> ";
@@ -63,11 +100,15 @@ public class LinkedList {
         // seasons.printList();
         // seasons.addToHead("summer");
         // seasons.addToHead("spring");
-        // seasons.printList();
         // seasons.addToTail("fall");
         // seasons.addToTail("winter");
         // seasons.printList();
         // seasons.removeHead();
         // seasons.printList();
+        // System.out.println("\n" + seasons.getData(2));
+        // System.out.println("\n" + seasons.size());
+
+
+
     }
 }
