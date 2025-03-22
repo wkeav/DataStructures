@@ -40,6 +40,10 @@ public class LinkedList {
         return removedHead.data;
     }
 
+    public String getData(int index){
+        return null;
+    }
+
     public String printList(){
         String output = "<head> ";
         Node currentNode = this.head;
